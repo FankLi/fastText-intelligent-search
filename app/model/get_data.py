@@ -11,18 +11,18 @@ def get_data_db():
     """
     global results
     with SSHTunnelForwarder(
-            ('54.223.128.196', 11690),  # 指定ssh登录的跳转机的address
+            ('54.223.*.*', 11690),  # 指定ssh登录的跳转机的address
             ssh_username="ubuntu",  # 跳转机的用户
-            ssh_pkey="/Users/letote/.ssh/id_rsa",
+            ssh_pkey="/Users/**/.ssh/id_rsa",
             ssh_private_key_password="qweasd",
             remote_bind_address=(
-                    'staging-mysql.czqjl6kiyvxa.rds.cn-north-1.amazonaws.com.cn', 3306)) as server:  # A机器的配置
+                    'hostname', 3306)) as server:  # A机器的配置
 
         db = pymysql.connect(host='127.0.0.1',  # 此处必须是是127.0.0.1
                              port=server.local_bind_port,
-                             user='ltstaging',
-                             passwd='Lt123456',
-                             db='letote_staging')
+                             user='***',
+                             passwd='***',
+                             db='***')
         data_list = []
 
         with db:
